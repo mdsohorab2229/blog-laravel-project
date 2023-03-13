@@ -1,0 +1,15 @@
+.main-body{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../image/backgrond.jpg");
+    background-size: cover;
+    position: relative;
+}
+
+.auth-section{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+}
