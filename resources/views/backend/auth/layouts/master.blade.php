@@ -13,15 +13,13 @@
 
 <div class="container-fluid g-0 main-body">
 
-    @yield('content')
-
     <div class="auth-section">
         <div class="card">
             <div class="card-header">
-                <h4>@yield('page_title')</h4>
+                <h4 >@yield('page_title')</h4>
             </div>
             <div class="card-body">
-
+                @yield('content')
             </div>
         </div>
     </div>
