@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,13 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/',[FrontendController::class, 'index'])->name('front.index');
+Route::get('/single-post',[FrontendController::class, 'single'])->name('front.single');
+
+Route::group(['prefix'=>'dashboard'], function (){
+    Route::get('/',[BackendController::class, 'index'])->name('back.index');
+    Route::resource('category',[CategoryController::class]);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
