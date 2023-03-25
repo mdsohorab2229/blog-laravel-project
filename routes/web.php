@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::group(['middleware'=>['auth']], function (){
     Route::group(['prefix'=>'dashboard'], function (){
         Route::get('/',[BackendController::class, 'index'])->name('back.index');
         Route::resource('category',CategoryController::class);
+        Route::resource('tag', TagController::class);
     });
 
 });
