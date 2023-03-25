@@ -21,14 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[FrontendController::class, 'index'])->name('front.index');
 Route::get('/single-post',[FrontendController::class, 'single'])->name('front.single');
 
-Route::group(['prefix'=>'dashboard'], function (){
-    Route::get('/',[BackendController::class, 'index'])->name('back.index');
-    Route::resource('category',[CategoryController::class]);
-});
+Route::group(['middleware'=>['auth']], function (){
 
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::group(['prefix'=>'dashboard'], function (){
+        Route::get('/',[BackendController::class, 'index'])->name('back.index');
+        Route::resource('category',CategoryController::class);
+    });
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
