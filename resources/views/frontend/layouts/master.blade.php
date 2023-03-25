@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-@include('frontend.includes.head')
+@include('frontend.includes.header')
 </head>
 
 <body>

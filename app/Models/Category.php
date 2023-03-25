@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $guarded=[];
+
+    const ACTIVE=1;
+    const INACTIVE=0;
 }

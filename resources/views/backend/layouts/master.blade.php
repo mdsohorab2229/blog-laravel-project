@@ -13,9 +13,7 @@
         <main>
             <div class="container-fluid px-4">
                 @include('backend.includes.breadcrumb')
-
                @yield('content')
-
             </div>
         </main>
         @include('backend.includes.footer')
