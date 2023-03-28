@@ -11,5 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+
+    protected $guarded = [];
+
+    public function post()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }

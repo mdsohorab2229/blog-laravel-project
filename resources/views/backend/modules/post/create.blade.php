@@ -25,7 +25,7 @@
                         </div>
                     @endif
 
-                    {!! Form::open(['method'=>'post', 'route'=>'post.store']) !!}
+                    {!! Form::open(['method'=>'post', 'route'=>'post.store','files'=>true]) !!}
                     @include('backend.modules.post.form')
                     {!! Form::button('Create Post', ['type'=>'submit', 'class'=>'btn btn-success mt-2']) !!}
                     {!! Form::close() !!}
