@@ -1,0 +1,30 @@
+p {
+    margin: 0;
+}
+
+hr {
+    margin: 5px !important;
+    color: darkcyan;
+}
+
+.post-table th, .post-table td {
+    vertical-align: middle !important;
+    text-align: center;
+    font-size: 14px;
+}
+
+.post-table td img {
+    width: 75px;
+    cursor: pointer;
+}
+.post-table td {
+   border-bottom: 2px solid black;
+}
+
+a{
+    text-decoration: none;
+    color: darkcyan;
+}
+a:hover{
+    color: darkblue;
+}
