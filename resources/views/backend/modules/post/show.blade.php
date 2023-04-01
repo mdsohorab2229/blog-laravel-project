@@ -48,8 +48,11 @@
                         <tr>
                             <th>Tags</th>
                             <td>
+                                @php
+                                    $classes = ['btn-success', 'btn-info','btn-danger', 'btn-warning','btn-dark']
+                                @endphp
                                 @foreach($post->tag as $tag)
-                                    <button class="btn btn-sm btn-success">{{ $tag->name }}</button>
+                                    <button class="btn btn-sm {{ $classes[random_int(0,3)] }}">{{ $tag->name }}</button>
                                 @endforeach
                             </td>
                         </tr>
@@ -89,7 +92,7 @@
                     <h4 class="mb-0">Category Details</h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered table-hover">
+                    <table class="table table-striped table-bordered table-hover table-sm">
                         <tbody>
                         <tr>
                             <th>ID</th>
@@ -121,9 +124,81 @@
                         </tr>
                         </tbody>
                     </table>
+                    <a href="{{ route('category.show',$post->category_id ) }}"><button class="btn btn-success btn-sm">Details</button></a>
                 </div>
             </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h4 class="mb-0">Sub Category Details</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered table-hover table-sm">
+                        <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <td>{{ $post->sub_category?->id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ $post->sub_category?->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Slug</th>
+                            <td>{{ $post->sub_category?->slug }}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>{{ $post->sub_category->status == \App\Models\Category::ACTIVE ? 'Active': 'InActive' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Order By</th>
+                            <td>{{ $post->sub_category->order_by }}</td>
+                        </tr>
+                        <tr>
+                            <th>Created At</th>
+                            <td>{{ $post->sub_category->created_at->toDayDateTimeString() }}</td>
+                        </tr>
+                        <tr>
+                            <th>Updated At</th>
+                            <td>{{ $post->sub_category->created_at != $post->sub_category->updated_at ? $post->sub_category->updated_at->toDayDateTimeString() : 'Not Updated' }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href="{{ route('sub-category.show',$post->sub_category_id ) }}"><button class="btn btn-success btn-sm">Details</button></a>
 
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h4 class="mb-0">User Details</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered table-hover table-sm">
+                        <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <td>{{ $post->user?->id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ $post->user?->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ $post->user?->email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Created At</th>
+                            <td>{{ $post->user->created_at->toDayDateTimeString() }}</td>
+                        </tr>
+                        <tr>
+                            <th>Updated At</th>
+                            <td>{{ $post->user->created_at != $post->user->updated_at ? $post->sub_category->updated_at->toDayDateTimeString() : 'Not Updated' }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

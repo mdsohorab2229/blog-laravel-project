@@ -1,15 +1,15 @@
 @extends('backend.layouts.master')
-@section('page_title', 'Category')
-@section('page_sub_title','Edit Category')
+@section('page_title', 'Post')
+@section('page_sub_title','Post Category')
 
 @section('content')
     <div class="row justify-content-between">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <h4>Edit Category</h4>
-                        <a href="{{ route('category.index') }}">
+                        <a href="{{ route('post.index') }}">
                             <button class="btn btn-success btn-sm">Back</button>
                         </a>
                     </div>
@@ -25,10 +25,10 @@
                         </div>
                     @endif
 
-                    {!! Form::model($category, ['method'=>'put', 'route'=>['category.update', $category->id]]) !!}
+                    {!! Form::model($post, ['method'=>'put', 'route'=>['post.update', $post->id], 'files'=>true]) !!}
 
-                    @include('backend.modules.category.form')
-                    {!! Form::button('Update Category', ['type'=>'submit', 'class'=>'btn btn-success mt-2']) !!}
+                    @include('backend.modules.post.form')
+                    {!! Form::button('Update Post', ['type'=>'submit', 'class'=>'btn btn-success mt-2']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
