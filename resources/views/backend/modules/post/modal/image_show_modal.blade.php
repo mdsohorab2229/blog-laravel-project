@@ -10,7 +10,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img class="img-thumbnail" width="50%" height="450px" alt="Display Image" id="display_image" />
+                <img class="img-thumbnail" width="100%" height="300px" alt="Display Image" id="display_image" />
             </div>
         </div>
     </div>
