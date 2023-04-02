@@ -22,7 +22,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[FrontendController::class, 'index'])->name('front.index');
-Route::get('/single-post',[FrontendController::class, 'single'])->name('front.single');
+Route::get('/all-post',[FrontendController::class, 'allPost'])->name('front.all_post');
+Route::get('/search',[FrontendController::class, 'search'])->name('front.search');
+Route::get('/category/{slug}',[FrontendController::class, 'category'])->name('front.category');
+Route::get('/category/{cat_slug}/{sub_cat_slug}',[FrontendController::class, 'subCategory'])->name('front.sub_category');
+Route::get('/tag/{slug}',[FrontendController::class, 'tag'])->name('front.tag');
+Route::get('/single-post/{slug}',[FrontendController::class, 'single'])->name('front.single');
 
 Route::group(['middleware'=>['auth']], function (){
 
