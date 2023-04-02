@@ -14,4 +14,7 @@ class Category extends Model
     const ACTIVE=1;
     const INACTIVE=0;
 
+    public function sub_categories(){
+        return $this->hasMany(SubCategory::class);
+    }
 }
