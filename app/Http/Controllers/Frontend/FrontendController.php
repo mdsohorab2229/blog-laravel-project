@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\SubCategory;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -18,9 +20,14 @@ class FrontendController extends Controller
         return view('frontend.modules.index', compact('posts', 'slider_posts'));
     }
 
-    public function single()
+    public function single($slug)
     {
-        return view('frontend.modules.single');
+        $posts = Post::with('category', 'sub_category', 'tag', 'user')
+            ->where('is_approved', 1)
+            ->where('status', 1)
+            ->where('slug', $slug)
+            ->firstOrFail();
+        return view('frontend.modules.single', compact('posts'));
     }
 
     public function allPost()
@@ -76,5 +83,21 @@ class FrontendController extends Controller
         return view('frontend.modules.all_post', compact('posts', 'title', 'sub_title'));
 
     }
+    public function tag($slug){
+       $tag= Tag::where('slug',$slug)->first();
+       $post_ids=DB::table('post_tag')->where('tag_id',$tag->id)->pluck('post_id');
 
+       if ($tag){
+           $posts =Post::with('category','sub_category','tag','user')
+               ->where('is_approved',1)
+               ->where('status',1)
+               ->whereIn('id',$post_ids)
+               ->latest()
+               ->paginate(10);
+       }
+        $title = $tag->name;
+        $sub_title = 'Post By Tag';
+        return view('frontend.modules.all_post', compact('posts', 'title', 'sub_title'));
+
+    }
 }
